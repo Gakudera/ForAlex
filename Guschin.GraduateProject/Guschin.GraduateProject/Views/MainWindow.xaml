@@ -1,0 +1,189 @@
+﻿<Window x:Class="Guschin.GraduateProject.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Guschin.GraduateProject.Views"
+        xmlns:vm="clr-namespace:Guschin.GraduateProject.ViewModels"
+        mc:Ignorable="d"
+        Title="Бизнес решения" Height="500" 
+        MinHeight="500" 
+        Width="1000"
+        MinWidth="1000"
+         WindowStartupLocation="CenterScreen" 
+        Icon="\Resources\log.png">
+    <!-- 
+    xmlns:vm = path to viewmodel
+    
+    window.datacontext -> vm:viewmodel
+    -->
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid
+            Grid.Row="0"
+            Background="{StaticResource ColorAccent}">
+
+            <Grid.Effect>
+                <DropShadowEffect 
+                    Opacity=".3" 
+                    Direction="200" 
+                    BlurRadius="8"
+                    ShadowDepth="1"/>
+            </Grid.Effect>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Image
+                Grid.Column="0"
+                Source="\Resources\log.png"
+                Margin="8"/>
+
+            <TextBox
+                Grid.Column="1"
+                Margin="8"
+                Text="{Binding SearchValue, UpdateSourceTrigger=PropertyChanged}"
+                BorderBrush="{StaticResource ColorAccent}"
+                VerticalContentAlignment="Center"/>
+
+            <ComboBox
+                Style="{StaticResource ComboBoxFlatStyle}"
+                Grid.Column="2"
+                Margin="8"
+                VerticalContentAlignment="Center"
+                FontSize="15"
+                ItemsSource="{Binding SortList}"
+                SelectedItem="{Binding SelectedSort, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <ComboBox
+                Grid.Column="3"
+                Style="{StaticResource ComboBoxFlatStyle}"
+                Margin="8"
+                VerticalContentAlignment="Center"
+                FontSize="15"
+                ItemsSource="{Binding FilterList}"
+                SelectedItem="{Binding SelectedFilter, UpdateSourceTrigger=PropertyChanged}"/>
+        </Grid>
+
+        <Grid
+            Grid.Row="1"
+            Background="#FFF">
+
+            <!-- 
+            обязательно itemssource к свойству в viewmodel            
+            -->
+            <ListView 
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                HorizontalContentAlignment="Center"
+                BorderBrush="Transparent"
+                ItemsSource="{Binding  DisplayingProducts,
+                UpdateSourceTrigger=PropertyChanged}"
+                SelectedItem="{Binding SelectedProduct, 
+                UpdateSourceTrigger=PropertyChanged}"
+                MouseDoubleClick="ListView_MouseDoubleClick">
+
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel 
+                            Orientation="Horizontal" 
+                            HorizontalAlignment="Center">
+                        </WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border 
+                            Name="brdItem"
+                            Margin="6,2"
+                            Background="White"
+                            BorderBrush="{StaticResource ColorAccent}"
+                            BorderThickness="2" >
+                            <Grid
+                                Margin="20" 
+                                Width="400">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="260"/>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+
+                                <Image 
+                                    Grid.Row="0"
+                                    Width="260" Stretch="UniformToFill"  
+                                    HorizontalAlignment="Center"
+                                    Margin="5"
+                                    Source="{Binding Logo,
+                                    UpdateSourceTrigger=PropertyChanged}"/>
+
+
+                                <Grid
+                                    Grid.Row="2">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel 
+                                        HorizontalAlignment="Center"
+                                        Orientation="Horizontal">
+                                        <TextBlock
+                                            Text="{Binding Name}"/>
+                                    </StackPanel>
+
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        Grid.Row="1"  FontWeight="Bold"
+                                        Text="{Binding Price, StringFormat={}{0:N2}руб}"/>
+
+                                    <TextBlock 
+                                        HorizontalAlignment="Center"
+                                        Grid.Row="2"
+                                        Text="{Binding ProductType.Name}" />
+
+                                    <TextBlock
+                                        Grid.Row="3"
+                                        Text=""/>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+
+        <Grid
+            Grid.Row="3"
+            Background="{StaticResource ColorAccent}">
+
+            <StackPanel
+                Orientation="Horizontal"
+                HorizontalAlignment="Center">
+
+                <Button 
+                    x:Name="FAQButton"
+                    Style="{StaticResource GelButton}"
+                    Content="Смотреть FAQs"
+                    Click="OpenFAQ_Click"/>
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</Window>

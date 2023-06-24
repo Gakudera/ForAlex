@@ -1,0 +1,69 @@
+﻿<Window x:Class="Guschin.GraduateProject.Views.ProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Guschin.GraduateProject.Views"
+        xmlns:vm="clr-namespace:Guschin.GraduateProject.ViewModels"
+        mc:Ignorable="d"
+        Title="Продукт" Height="600" 
+        MinHeight="500" 
+        Width="600"
+        MinWidth="600"
+        WindowStartupLocation="CenterScreen"
+        Icon="/resources/log.png">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="FontFamily" Value="Roboto-Medium"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid
+        Background="{StaticResource ColorPrimary}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="260"/>
+                <RowDefinition Height="200"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Image  
+                Grid.Row="0" 
+                Source="{Binding Product.Logo}" 
+                Width="350" 
+                Margin="17,0,17,0"/>
+
+            <StackPanel Grid.Row="1" >
+                <TextBlock   
+                    Margin="5,6,5,0" 
+                    Text="{Binding Product.Name}"/>
+                <TextBlock 
+                    Text="{Binding Product.ProductType.Name}" 
+                    Opacity="0.4" 
+                    Margin="5,3,5,0" />
+                <TextBlock
+                    Margin="5,3,5,0" 
+                    Text="{Binding Product.Price, StringFormat={}{0:N2}руб}"/>
+                <TextBlock  
+                    Width="400" 
+                    Height="250"
+                    Margin="5"
+                    TextWrapping="Wrap"
+                    Text="{Binding Product.Description, 
+                    UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+
+            <Button 
+                Grid.Row="2"
+                Content="Консультирование" 
+                Style="{StaticResource GelButton}"
+                Margin="8,8,8,8"
+                Background="{StaticResource ColorAccent}"
+                Height="25"
+                Width="400"
+                Click="Consultation_Click"/>
+        </Grid>
+    </Grid>
+</Window>

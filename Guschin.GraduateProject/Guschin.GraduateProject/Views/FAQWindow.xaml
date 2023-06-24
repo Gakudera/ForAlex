@@ -1,0 +1,83 @@
+﻿<Window x:Class="Guschin.GraduateProject.Views.FAQWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Guschin.GraduateProject.Views"
+        xmlns:vm="clr-namespace:Guschin.GraduateProject.ViewModels"
+        mc:Ignorable="d"
+        Title="FAQWindow" 
+        Height="450" 
+        Width="800">
+    <Window.DataContext>
+        <vm:FAQWindowViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackPanel
+            Grid.Row="0"
+            Margin="10"
+            Orientation="Horizontal">
+            <Button 
+                x:Name="AddButton"
+                Margin="10"
+                Content="Add"
+                Width="100"
+                Command="{Binding AddAnswer}"/>
+            <Button 
+                x:Name="EditButton"
+                Margin="10"
+                Content="Edit"
+                Width="100"
+                Command="{Binding EditAnswer}"/>
+            <Button 
+                x:Name="DeleteButton"
+                Margin="10"
+                Content="Delete"
+                Width="100"
+                Command="{Binding DeleteAnswer}"/>
+        </StackPanel>
+
+        <ListView
+            Grid.Row="1"
+            ItemsSource="{Binding List, UpdateSourceTrigger=PropertyChanged}"
+            SelectedIndex="{Binding Index, UpdateSourceTrigger=PropertyChanged}"
+            BorderBrush="White"
+            BorderThickness="0"
+            ScrollViewer.VerticalScrollBarVisibility="Hidden"
+            HorizontalContentAlignment="Stretch">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border
+                        BorderBrush="Black"
+                        BorderThickness="1">
+                        <Grid
+                            Height="100">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.4*"/>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock 
+                                Grid.Column="0"
+                                Text="{Binding Date}"/>
+                            <TextBlock 
+                                Grid.Column="1"
+                                TextWrapping="WrapWithOverflow"
+                                Text="{Binding Question}"/>
+                            <TextBlock 
+                                Grid.Column="2"
+                                TextWrapping="WrapWithOverflow"
+                                Text="{Binding Answer}"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Window>
