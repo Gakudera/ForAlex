@@ -40,7 +40,7 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock 
-                    Text="Логин" 
+                    Text="Email" 
                     FontSize="18" 
                     Margin="0,8,0,8"
                     HorizontalAlignment="Center" 

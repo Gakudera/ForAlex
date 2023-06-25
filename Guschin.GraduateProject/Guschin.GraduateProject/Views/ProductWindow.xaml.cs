@@ -1,4 +1,5 @@
-﻿using Guschin.GraduateProject.ViewModels;
+﻿using Guschin.GraduateProject.Entities;
+using Guschin.GraduateProject.ViewModels;
 using Guschin.GraduateProject.Views;
 using System;
 using System.Collections.Generic;
@@ -15,18 +16,19 @@ namespace Guschin.GraduateProject.Views
     public partial class ProductWindow : Window
     {
         private ProductWindowViewModel? _viewModel = null;
-        
-        public ProductWindow(Guid? productId)
+        private User _user;
+        public ProductWindow(Guid? productId, User user)
         {
             InitializeComponent();
             _viewModel = new ProductWindowViewModel(productId); 
             DataContext = _viewModel;
+            _user = user;
         }
 
         private void Consultation_Click(object sender, RoutedEventArgs e)
         {
-            if(_viewModel != null)
-                new СonsultationWindow(_viewModel.Product).ShowDialog();
+            if (_viewModel != null)
+                new СonsultationWindow(_viewModel.Product, _user).ShowDialog();
         }
     }
 }

@@ -38,7 +38,7 @@
             <StackPanel Grid.Row="1" >
                 <TextBlock   
                     Margin="5,6,5,0" 
-                    Text="{Binding Product.Name}"/>
+                    Text="{Binding Product.ProductName}"/>
                 <TextBlock 
                     Text="{Binding Product.ProductType.Name}" 
                     Opacity="0.4" 

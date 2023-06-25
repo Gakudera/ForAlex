@@ -145,7 +145,7 @@
                                         HorizontalAlignment="Center"
                                         Orientation="Horizontal">
                                         <TextBlock
-                                            Text="{Binding Name}"/>
+                                            Text="{Binding ProductName}"/>
                                     </StackPanel>
 
                                     <TextBlock

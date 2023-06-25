@@ -25,6 +25,7 @@ namespace Guschin.GraduateProject.Views
     {
         private string _role = "";
         private MainWindowViewModel? _viewModel = null;
+        private User _user;
 
         public MainWindow(User? user)
         {
@@ -32,7 +33,7 @@ namespace Guschin.GraduateProject.Views
             _viewModel = (MainWindowViewModel)DataContext;
 
             var role = GetRole(user.Id);
-
+            _user = user;
             _role = role;
             if(role == "Администратор")
             {
@@ -64,7 +65,7 @@ namespace Guschin.GraduateProject.Views
         private void ListView_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (_viewModel != null && _viewModel.SelectedProduct != null)
-                new ProductWindow(_viewModel.SelectedProduct.Id).ShowDialog();
+                new ProductWindow(_viewModel.SelectedProduct.Id, _user).ShowDialog();
         }
 
         private void OpenFAQ_Click(object sender, RoutedEventArgs e)

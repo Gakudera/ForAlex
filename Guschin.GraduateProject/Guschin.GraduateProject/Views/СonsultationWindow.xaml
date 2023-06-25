@@ -8,13 +8,14 @@
         mc:Ignorable="d"
         Title="СonsultationWindow" 
         Height="450" 
-        Width="800">
+        Width="800"
+        Icon="\Resources\log.png">
     <Window.DataContext>
         <vm:ConsultationViewModel/>
     </Window.DataContext>
     <Grid>
         <!--Background color and rounded corners-->
-        <Border CornerRadius="15" Grid.RowSpan="2">
+        <Border Grid.RowSpan="2">
             <Border.Background>
                 <LinearGradientBrush>
                     <GradientStop Color="#FFAB5E" Offset="0.0"/>
@@ -24,6 +25,7 @@
         </Border>
 
         <Grid>
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
@@ -31,72 +33,26 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
+                
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <!--<Grid Grid.Column="3">
-
+                <Grid Grid.Column="0">
+                    
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-
-                    <Grid Grid.Column="2">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-
-                        <Button 
-                            HorizontalAlignment="Right"
-                            Width="40"
-                            Grid.Row="0"
-                            VerticalAlignment="Top"
-                            BorderBrush="{StaticResource ColorAccent}"
-                            Background="{StaticResource ColorAccent}">
-                            <StackPanel 
-                                Background="{StaticResource ColorAccent}">
-                                <Image 
-                                    Margin="-5" 
-                                    Grid.Row="0" 
-                                    Source="\Resources\icons8-закрыть-48.png" 
-                                    Width="40"/>
-                            </StackPanel>
-                        </Button>
-
-                    </Grid>
-
-
-                </Grid>-->
-
-                <Grid 
-                    Grid.Column="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.4*"/>
+                        <ColumnDefinition Width="70"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
                     <Image 
                         Grid.Column="0" 
-                        Source="\Resources\picture.png" 
-                        HorizontalAlignment="Left"/>
-                    <StackPanel 
-                        Grid.Column="1"
-                        Orientation="Vertical">
-                        <TextBlock 
-                            Margin="8,0,0,0" 
-                            Text="{Binding Path=Product.ProductName, StringFormat=Продукт: {0}}"/>
-                        <TextBlock 
-                            Margin="8,0,0,0" 
-                            Text="{Binding Path=Product, StringFormat=Статус: {0}}"/>
-                    </StackPanel>
+                        Source="{Binding Logo}" 
+                        HorizontalAlignment="Left"
+                        Margin="15 0"/>
                 </Grid>
+                
             </Grid>
 
             <ListView  
@@ -108,7 +64,7 @@
                             Height="20">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="70"/>
-                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="110"/>
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
 
@@ -117,7 +73,7 @@
                                 Text="{Binding Path=User.Person.FirstName}"/>
                             <TextBlock 
                                 Grid.Column="1"
-                                Text="{Binding DateStr}"/>
+                                Text="{Binding Date, ConverterCulture=ru-RU}"/>
                             <TextBlock 
                                 Grid.Column="2"
                                 Margin="5, 0, 0, 0"
@@ -142,13 +98,17 @@
                     TextWrapping="Wrap"
                     AcceptsReturn="True"
                     HorizontalScrollBarVisibility="Disabled"
-                    VerticalScrollBarVisibility="Auto"/>
+                    VerticalScrollBarVisibility="Auto"
+                    x:Name="MessageTextBox" 
+                    TextChanged="MessageTextBox_TextChanged"/>
                 <Button  
                     HorizontalAlignment="Left" 
                     Grid.Column="2"
                     Width="50" Height="50"
                     BorderBrush="{StaticResource ColorAccent}"
-                    Background="{StaticResource ColorAccent}">
+                    Background="{StaticResource ColorAccent}"
+                    x:Name="SendMessageButton"
+                    Click="SendMessageButton_Click">
                     <StackPanel 
                         Background="{StaticResource ColorAccent}">
                         <Image 

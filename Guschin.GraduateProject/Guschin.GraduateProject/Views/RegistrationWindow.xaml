@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Guschin.GraduateProject.Views"
         mc:Ignorable="d"
-        Title="Регистрация" Height="400" Width="500">
+        Title="Регистрация" Height="500" Width="500">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Center" />
@@ -15,15 +15,7 @@
     </Window.Resources>
 
     <Grid>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition  Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+        <StackPanel VerticalAlignment="Center">
 
             <Image
                 Grid.Row="0"
@@ -37,52 +29,119 @@
                 FontSize="30"
                 Margin="8,20,8,8"/>
 
-            <Grid
-                Grid.Row="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
 
-                <TextBlock 
-                    Text="Логин" 
+                <StackPanel Width="175"
+                            Margin="0 5">
+
+                    <TextBlock 
+                    Text="Телефон" 
                     FontSize="18" 
-                    Margin="8,8,0,8"
-                    HorizontalAlignment="Left" 
+                    Margin="0 2"
+                    HorizontalAlignment="Center" 
                     VerticalAlignment="Center"/>
-                <TextBox 
+
+                    <TextBox 
                     Grid.Row="1" 
-                    x:Name="textBoxLogin" 
+                    x:Name="textBoxPhone" 
                     Height="30"
                     Margin="8,0,8,0"/>
-            </Grid>
 
-            <Grid
-                Grid.Row="3">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                
-                <TextBlock 
+                    <TextBlock 
+                    Text="Email" 
+                    FontSize="18" 
+                    Margin="0 2"
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center"/>
+
+                    <TextBox 
+                    Grid.Row="1" 
+                    x:Name="textBoxEmail" 
+                    Height="30"
+                    Margin="8,0,8,0"/>
+
+                    <TextBlock 
                     Text="Пароль" 
                     FontSize="18" 
-                    Margin="8,8,0,8"
-                    HorizontalAlignment="Left" 
+                    Margin="0 2"
+                    HorizontalAlignment="Center" 
                     VerticalAlignment="Center"/>
-                <TextBox Grid.Row="1" 
+
+                    <TextBox Grid.Row="1" 
                     x:Name="textBoxPass"
                     Height="30"
                     Margin="8,0,8,0"/>
-            </Grid>
 
-            <Grid
-                Grid.Row="4">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-            </Grid>
+                    <TextBlock 
+                    Text="Дата рождения" 
+                    FontSize="18" 
+                    Margin="0 2"
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center"/>
+
+                    <DatePicker Grid.Row="1" 
+                    x:Name="datePickerDateOfBirth"
+                    Height="30"
+                    Margin="8,0,8,0"/>
+
+                </StackPanel>
+
+                <StackPanel Width="175"
+                            Margin="0 5">
+
+                    <TextBlock 
+                    Text="Фамилия" 
+                    FontSize="18" 
+                    Margin="0 2"
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center"/>
+
+                    <TextBox 
+                    Grid.Row="1" 
+                    x:Name="textBoxLastName" 
+                    Height="30"
+                    Margin="8,0,8,0"/>
+
+                    <TextBlock 
+                    Text="Имя" 
+                    FontSize="18" 
+                    Margin="0 2"
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center"/>
+
+                    <TextBox 
+                    Grid.Row="1" 
+                    x:Name="textBoxFirstName" 
+                    Height="30"
+                    Margin="8,0,8,0"/>
+
+                    <TextBlock 
+                    Text="Отчество" 
+                    FontSize="18" 
+                    Margin="0 2"
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center"/>
+
+                    <TextBox Grid.Row="1" 
+                    x:Name="textBoxMiddleName"
+                    Height="30"
+                    Margin="8,0,8,0"/>
+
+                    <TextBlock 
+                    Text="Пол" 
+                    FontSize="18" 
+                    Margin="0 2"
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center"/>
+
+                    <ComboBox Margin="8 0"
+                              x:Name="comboBoxGender"/>
+
+                </StackPanel>
+
+            </StackPanel>
+
 
             <Button
                 Grid.Row="5"
@@ -93,6 +152,21 @@
                 Width="200" 
                 Background="{StaticResource ColorAccent}" 
                 Click="Button_Registration_Click"/>
-        </Grid>
+
+            <Button
+                x:Name="BackButton"
+                Grid.Row="5"
+                Style="{StaticResource GelButton}"
+                Margin="8,8,8,8"
+                Height="30"
+                Content="Авторизация"
+                Width="200" 
+                Background="{StaticResource ColorAccent}" 
+                Click="BackButton_Click"/>
+
+
+        </StackPanel>
+        
     </Grid>
+    
 </Window>

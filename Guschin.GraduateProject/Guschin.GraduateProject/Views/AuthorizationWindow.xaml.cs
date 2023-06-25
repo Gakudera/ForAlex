@@ -42,7 +42,7 @@ namespace Guschin.GraduateProject.Views
 
             using(var db = new ApplicationDbContext())
             {
-                user = db.Users.AsNoTracking().SingleOrDefault(u => u.Email == login);
+                user = db.Users.AsNoTracking().SingleOrDefault(u => u.Email == login && u.PasswordHash == password);
             }
 
             if (user == null)
